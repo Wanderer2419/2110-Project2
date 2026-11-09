@@ -4,17 +4,31 @@
 #include <limits>
 #include "FacilityLoader.h"
 #include "HashTable.h"
+#include "CampusGraph.h"
 
 using namespace std;
 
-int main() {
+int main(int argc, char* argv[]) {
+
+    string dataDirectory;
+    cout << "Number of command line arguments = " << argc << endl;
+    if (argc >= 2) {
+        cout << "Too many command line arguments: Using data/ as data directory." << endl;
+        dataDirectory = "data";
+    } else {
+        dataDirectory = argv[1];
+    }
 
     HashTable ht;
+    CampusGraph graph;
+    string startingBuilding;
 
     // Load facilities from file
     if(!loadFacilities("data/facilities.txt", ht)) {
         return 1;
     }
+    graph.loadFiles(dataDirectory);
+    
 
     int choice = 0;
 
@@ -68,9 +82,17 @@ int main() {
             }
 
             case 3:
+                graph.displayCampusGraph();
+                break;
+            
             case 4:
+                graph.displayGraphInfo();
+                break;
+            
             case 5:
-                cout << "Graph feature: Teammate B\n";
+                cout << "Enter the building to start the BFS algorithm from: ";
+                getline(cin, startingBuilding);
+                graph.displayReachability(startingBuilding);
                 break;
 
             case 6:
