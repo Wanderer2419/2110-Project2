@@ -1,18 +1,8 @@
 #include "CampusGraph.h"
-#include <iostream>
-#include <fstream>
-#include <sstream>
-#include <cstring>
-#include <string>
-#include <unordered_map>
-#include <unordered_set>
-#include <queue>
-#include <vector>
-#include <algorithm>
 using namespace std;
 
 static string clean(const string& str) {
-    const string whitespace = " \t\r\n");
+    const string whitespace = " \t\r\n";
     size_t start = str.find_first_not_of(whitespace);
     if (start == string::npos) {
         return "";
@@ -29,8 +19,9 @@ void CampusGraph::displayCampusGraph() const {
             cout << " -> (No connections)" << endl;
         } else {
             for (int i = 0; i < pair.second.size(); i++) {
-                cout << " -> " << pair.second[i] << endl;
+                cout << " -> " << pair.second[i];
             }
+            cout << endl;
         }
     }
 }
@@ -46,8 +37,8 @@ void CampusGraph::displayGraphInfo() const {
 }
 
 
-void CampusGraph::displayReachability(const string &building) const {
-    building = clean(building);
+void CampusGraph::displayReachability(const string &input) const {
+    string building = clean(input);
     building[0] = std::toupper(static_cast<unsigned char>(building[0]));
     for (int i = 1; i < building.length(); i++) {
         building[i] = std::tolower(static_cast<unsigned char>(building[i]));
@@ -179,14 +170,14 @@ void CampusGraph::loadFiles(const string& dataDir) {
                 string buildingA = lineC.substr(0, barPos);
                 buildingA = clean(buildingA);
                 buildingA[0] = std::toupper(static_cast<unsigned char>(buildingA[0]));
-                for (int i = 1; i < building.length(); i++) {
+                for (int i = 1; i < buildingA.length(); i++) {
                     buildingA[i] = std::tolower(static_cast<unsigned char>(buildingA[i]));
                 }
                 
-                string buildingB = lineC.substr(barPos, lineC.length());
+                string buildingB = lineC.substr(barPos + 1, lineC.length());
                 buildingB = clean(buildingB);
                 buildingB[0] = std::toupper(static_cast<unsigned char>(buildingB[0]));
-                for (int i = 1; i < building.length(); i++) {
+                for (int i = 1; i < buildingB.length(); i++) {
                     buildingB[i] = std::tolower(static_cast<unsigned char>(buildingB[i]));
                 }
 
