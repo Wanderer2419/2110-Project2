@@ -12,13 +12,16 @@ using namespace std;
 int main(int argc, char* argv[]) {
 
     string dataDirectory;
-    cout << "Number of command line arguments = " << argc << endl;
-    if (argc >= 2) {
+    cout << "Number of command line arguments = " + to_string(argc) << endl;
+// This causes segmentation: Core dump ______________
+/*    if (argc >= 2) {
         cout << "Too many command line arguments: Using data/ as data directory." << endl;
         dataDirectory = "data";
     } else {
         dataDirectory = argv[1];
-    }
+    }*/
+
+    dataDirectory = "data";
 
     HashTable ht;
     CampusGraph graph;
@@ -92,7 +95,8 @@ int main(int argc, char* argv[]) {
                 break;
             
             case 5:
-                cout << "Enter the building to start the BFS algorithm from: ";
+                cin.ignore();
+                cout << "Enter the building to start the BFS algorithm from: " << endl;
                 getline(cin, startingBuilding);
                 graph.displayReachability(startingBuilding);
                 break;
