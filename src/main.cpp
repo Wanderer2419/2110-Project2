@@ -30,7 +30,7 @@ int main(int argc, char* argv[]) {
         return 1;
     }
     graph.loadFiles(dataDirectory);
-    departments.loadFromFile("data");
+    departments.loadFromFile(dataDirectory);
 
     int choice = 0;
 
