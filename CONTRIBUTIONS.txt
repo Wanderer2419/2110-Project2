@@ -1,0 +1,17 @@
+Group member contributions:
+
+Shared Work:
+- Main.cpp
+
+
+Sushant Lama:
+- Hash Table header and source files
+- Facility header and source files
+- facilities.txt loading function within FacilityLoader.h/.cpp
+
+Aiden Does:
+- Campus Graphing system header and source files
+- buildings.txt and connections.txt loading functions within CampusGraph.h/.cpp
+
+Dylan Allen:
+- 
