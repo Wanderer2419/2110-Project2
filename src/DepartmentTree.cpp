@@ -130,7 +130,8 @@ void DepartmentTree::displayPreorder() const {
     printPreorder(root, first);
     cout << endl;
 }
-bool askName(const string& prompt, string& name) {
+
+static bool askName(const string& prompt, string& name) {
     cout << prompt;
     getline(cin, name);
     size_t first = name.find_first_not_of(" \t\r\n");
@@ -140,4 +141,28 @@ bool askName(const string& prompt, string& name) {
     }
     name = name.substr(first, name.find_last_not_of(" \t\r\n") - first + 1);
     return true;
+}
+
+void DepartmentTree::addFromMenu() {
+    string name, parent, reason;
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');   
+    if(!askName("Enter new department name: ", name)) return;
+    if(isEmpty()) {
+        add(name, "", reason);
+        cout << "Added \"" << name << "\" as the root department.\n";
+    }
+    else if(askName("Enter parent department name: ", parent)) {
+        if(add(name, parent, reason))
+            cout << "Added \"" << name << "\" under \"" << find(parent)->name << "\".\n";
+        else
+            cout << "Error: " << reason << ". Tree unchanged.\n";
+    }
+}
+
+
+void DepartmentTree::searchFromMenu() const {
+    string name;
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');   
+    if(askName("Enter department name: ", name))
+        displaySearch(name);
 }
