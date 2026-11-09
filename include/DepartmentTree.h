@@ -44,5 +44,5 @@ private:
     DepartmentTree(const DepartmentTree&);
     DepartmentTree& operator=(const DepartmentTree&);
 };
-bool askName(const string& prompt, string& name);  
+
 #endif
