@@ -11,13 +11,26 @@
 #include <algorithm>
 using namespace std;
 
+static string clean(const string& str) {
+    const string whitespace = " \t\r\n");
+    size_t start = str.find_first_not_of(whitespace);
+    if (start == string::npos) {
+        return "";
+    }
+    size_t end = str.find_last_not_of(whitespace);
+    return str.substr(start, end - start + 1);
+}
 
 void CampusGraph::displayCampusGraph() const {
     cout << "Campus graph displayed in added order:" << endl;
     for (const auto& pair : adjacencyList) {
         cout << "\t" << pair.first;
-        for (int i = 0; i < pair.second.size(); i++) {
-            cout << " -> " << pair.second[i] << endl;
+        if (pair.second.size() == 0) {
+            cout << " -> (No connections)" << endl;
+        } else {
+            for (int i = 0; i < pair.second.size(); i++) {
+                cout << " -> " << pair.second[i] << endl;
+            }
         }
     }
 }
@@ -34,6 +47,11 @@ void CampusGraph::displayGraphInfo() const {
 
 
 void CampusGraph::displayReachability(const string &building) const {
+    building = clean(building);
+    building[0] = std::toupper(static_cast<unsigned char>(building[0]));
+    for (int i = 1; i < building.length(); i++) {
+        building[i] = std::tolower(static_cast<unsigned char>(building[i]));
+    }
     // Edge case: check if the starting building exists in our graph
     if (adjacencyList.find(building) == adjacencyList.end()) {
         cout << "Starting building not found in the graph.\n";
@@ -103,7 +121,11 @@ void CampusGraph::loadFiles(const string& dataDir) {
 
         while(getline(buildFiles, lineB)) {
 
-            string building = lineB;
+            string building = clean(lineB);
+            building[0] = std::toupper(static_cast<unsigned char>(building[0]));
+            for (int i = 1; i < building.length(); i++) {
+                building[i] = std::tolower(static_cast<unsigned char>(building[i]));
+            }
             numLinesB++;
             
             if (building.empty() || building[0] == '#') {
@@ -142,7 +164,7 @@ void CampusGraph::loadFiles(const string& dataDir) {
 
             while(getline(connectFiles, lineC)) {
 
-                lineC = lineC;
+                lineC = clean(lineC);
                 numLinesC++;
                 
                 if (lineC.empty() || lineC[0] == '#') {
@@ -153,8 +175,20 @@ void CampusGraph::loadFiles(const string& dataDir) {
 
                 int numFields = static_cast<int>(count(lineC.begin(), lineC.end(), '|')) + 1;
                 int barPos = lineC.find('|');
+                
                 string buildingA = lineC.substr(0, barPos);
+                buildingA = clean(buildingA);
+                buildingA[0] = std::toupper(static_cast<unsigned char>(buildingA[0]));
+                for (int i = 1; i < building.length(); i++) {
+                    buildingA[i] = std::tolower(static_cast<unsigned char>(buildingA[i]));
+                }
+                
                 string buildingB = lineC.substr(barPos, lineC.length());
+                buildingB = clean(buildingB);
+                buildingB[0] = std::toupper(static_cast<unsigned char>(buildingB[0]));
+                for (int i = 1; i < building.length(); i++) {
+                    buildingB[i] = std::tolower(static_cast<unsigned char>(buildingB[i]));
+                }
 
                 // Search for duplicate records
                 bool duplicate = false;
