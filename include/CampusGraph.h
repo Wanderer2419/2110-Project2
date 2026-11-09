@@ -3,10 +3,8 @@
 
 #include <iostream>
 #include <fstream>
-#include <sstream>
 #include <cstring>
 #include <string>
-#include <cctype>
 #include <unordered_map>
 #include <unordered_set>
 #include <queue>
@@ -21,7 +19,7 @@ class CampusGraph {
         // Menu option: Display graph counts and degrees
         void displayGraphInfo() const;
         // Menu option: Find reachable buildings
-        void displayReachability(const string& building) const;
+        void displayReachability(const string& input) const;
 
         // Display all buildings in the graph
         void displayBuildings() const;
