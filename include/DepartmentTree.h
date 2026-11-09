@@ -29,6 +29,8 @@ public:
 
     void loadFromFile(const string& dataDir);
 
+    void addFromMenu();
+    void searchFromMenu() const;
     void displaySearch(const string& name) const;  
     void displayHierarchy() const;                 
     void displayPreorder() const;                  
