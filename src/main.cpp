@@ -5,6 +5,7 @@
 #include "FacilityLoader.h"
 #include "HashTable.h"
 #include "CampusGraph.h"
+#include "DepartmentTree.h"
 
 using namespace std;
 
@@ -22,13 +23,14 @@ int main(int argc, char* argv[]) {
     HashTable ht;
     CampusGraph graph;
     string startingBuilding;
+    DepartmentTree departments;
 
     // Load facilities from file
     if(!loadFacilities("data/facilities.txt", ht)) {
         return 1;
     }
     graph.loadFiles(dataDirectory);
-    
+    departments.loadFromFile("data");
 
     int choice = 0;
 
@@ -94,16 +96,24 @@ int main(int argc, char* argv[]) {
                 getline(cin, startingBuilding);
                 graph.displayReachability(startingBuilding);
                 break;
-
             case 6:
+                departments.addFromMenu();
+                break;
+
             case 7:
+                departments.searchFromMenu();
+                break;
+
             case 8:
+                departments.displayHierarchy();
+                break;
+
             case 9:
-                cout << "Department feature: Teammate C\n";
+                departments.displayPreorder();
                 break;
 
             case 10:
-                cout << "Exiting program...\n";
+                  cout << "Exiting program...\n";
                 break;
 
             default:
