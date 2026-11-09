@@ -3,7 +3,7 @@
 #define FACILITYLOADER_H
 
 #include "HashTable.h"
-#include "FacilityLoader.h"
+#include "Facility.h"
 #include <iostream>
 #include <fstream>
 #include <sstream>
