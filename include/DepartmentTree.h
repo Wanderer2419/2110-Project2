@@ -38,8 +38,8 @@ public:
 private:
     DepartmentNode* root;
     static DepartmentNode* findIn(DepartmentNode* n, const string& name);
-    static void printIndented(const DepartmentNode* n, int depth);
-    static void printPreorder(const DepartmentNode* n, bool& first);
+    static string indented(const DepartmentNode* n, int depth);
+    static string preorder(const DepartmentNode* n);
 
     DepartmentTree(const DepartmentTree&);
     DepartmentTree& operator=(const DepartmentTree&);
