@@ -130,3 +130,14 @@ void DepartmentTree::displayPreorder() const {
     printPreorder(root, first);
     cout << endl;
 }
+bool askName(const string& prompt, string& name) {
+    cout << prompt;
+    getline(cin, name);
+    size_t first = name.find_first_not_of(" \t\r\n");
+    if(first == string::npos) {
+        cout << "Error: name cannot be blank.\n";
+        return false;
+    }
+    name = name.substr(first, name.find_last_not_of(" \t\r\n") - first + 1);
+    return true;
+}
