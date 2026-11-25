@@ -10,6 +10,7 @@
 #include <queue>
 #include <vector>
 #include <algorithm>
+#include <utility>
 using namespace std;
 
 class CampusGraph {
@@ -20,6 +21,10 @@ class CampusGraph {
         void displayGraphInfo() const;
         // Menu option: Find reachable buildings
         void displayReachability(const string& input) const;
+        // Menu option: Pathfinding BFS
+        void shortestPath(const string& inStart, const string& inEnd) const;
+        // Menu option: Connectivity report
+        void connectivityReport() const;
 
         // Display all buildings in the graph
         void displayBuildings() const;
@@ -28,8 +33,8 @@ class CampusGraph {
         void loadFiles(const string& dataDir);
 
         // Number of Vertices and Edges
-        size_t numVertices;
-        size_t numEdges;
+        size_t numVertices = 0;
+        size_t numEdges = 0;
     private:
         // node and pathway storage: An adjecncy list was chosen for the ease of element accessibility.
         unordered_map<string, vector<string>> adjacencyList;

@@ -1,17 +1,27 @@
+### Needs work
+
 Group member contributions:
 
 Shared Work:
 - Main.cpp
+
+!! Reflections include: what we built and reviewed, and one bug we found and fixed.
 
 
 Sushant Lama:
 - Hash Table header and source files
 - Facility header and source files
 - facilities.txt loading function within FacilityLoader.h/.cpp
+- Reflections:
+
 
 Aiden Does:
-- Campus Graphing system header and source files
+- Campus Graphing system header and source files including BFS search and path finding, as well as the graphing connectivity report
 - buildings.txt and connections.txt loading functions within CampusGraph.h/.cpp
+- Reflections: 
+One bug fixed: Fixed an issue where the Graphing function used to display the reachability from a starting node would just display all of the nodes in graph system.
 
 Dylan Allen:
 - 
+- Reflections:
+
